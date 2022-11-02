@@ -45,16 +45,6 @@
     }
 }
 
-@media  (max-width: 767px) {
-    .header {
-        &__logo {
-            width: 180px;
-        }
-        &__phone {
-            font-size: 16px;
-        }
-    }
-}
 @media  (max-width: 575px) {
     .header {
         flex-direction: column;
@@ -64,6 +54,7 @@
         }
         &__official {
             margin: 10px 0;
+            width: auto;
         }
         &__phone {
             font-size: 18px;

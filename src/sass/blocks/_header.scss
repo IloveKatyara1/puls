@@ -39,3 +39,28 @@
         align-items: flex-end;
     }
 }
+
+
+
+@media  (max-width: 767px) {
+    .header {
+        flex-wrap: wrap;
+
+        &__phone {
+            font-size: 16px;
+        }
+        &__official {
+            display: block;
+            text-align: right;
+        }
+    }
+}
+
+
+@media (max-width: 587px) {
+    .header {
+        &__contacts {
+            margin-top: 15px;
+        }
+    }
+}
