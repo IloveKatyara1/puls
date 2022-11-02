@@ -1,0 +1,52 @@
+.advantage {
+    padding: 70px 0 40px 0;
+    // height: 473px;
+    background: #F6F6F6;
+
+    &__our {
+        font-weight: 700;
+        font-size: 30px;
+        text-align: center;
+        color: #0D0D0D;
+    }
+    &__icon {
+        margin: 60px auto 35px auto;
+        display: block;
+    }
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__supicon {
+        font-size: 18px;
+        line-height: 29px;
+        text-align: center;
+        color: #0D0D0D;
+    }
+    &__description {
+        font-weight: 300;
+        font-size: 14px;
+        text-align: center;
+        color: #0D0D0D;
+        a {
+            font-family: 'MuseoModerno';
+            font-weight: 300;
+            font-size: 14px;
+            color: #FF0000;
+        }
+    }
+}
+@media  (max-width: 575px) {
+    .advantage {
+
+        &__our {
+            font-size: 25px;
+        }
+        &__wrapper {
+            flex-direction: column;
+        }
+        &__icon {
+            margin: 30px auto 10px auto;
+        }
+    }
+}
