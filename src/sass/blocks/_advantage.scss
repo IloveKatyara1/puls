@@ -3,11 +3,12 @@
     // height: 473px;
     background: #F6F6F6;
 
-    &__our {
+    .title {
         font-weight: 700;
         font-size: 30px;
         text-align: center;
         color: #0D0D0D;
+        text-transform: uppercase;
     }
     &__icon {
         margin: 60px auto 35px auto;
@@ -60,7 +61,7 @@
 @media  (max-width: 575px) {
     .advantage {
 
-        &__our {
+        .title {
             font-size: 25px;
         }
         &__wrapper {
