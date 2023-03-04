@@ -1,0 +1,118 @@
+.corousel {
+    padding: 81px 0;
+    display: flex;
+    width: 947px;
+    margin: 0 auto;
+
+    &__inner {
+        width: 750px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative; 
+        height: 520px;
+
+        &__contens {
+            display: flex;
+            position: absolute;
+            left: -750px;
+
+            img {
+                height: 520px;
+                width: 750px;
+            }
+        }
+    }
+
+    button {
+        border: none;
+        background-color: #fff;
+
+        span {
+            height: 30px;
+            width: 10px;
+            background-color: $base-color;
+            display: block;
+        }
+    }
+
+    &__btn-next {
+        span:first-child {
+            transform: rotate(135deg);
+        }
+        span:last-child {
+            transform: translateY(-14px) rotate(45deg);
+        }
+    }
+
+    &__btn-prev {
+        span:first-child {
+            transform: rotate(45deg);
+        }
+        span:last-child {
+            transform: translateY(-14px) rotate(135deg);
+        }
+    }
+}
+
+@media  (max-width: 975px) {
+    .corousel {
+        width: 825px;
+    }
+}
+
+@media  (max-width: 840px) {
+    .corousel {
+        width: auto;
+
+        button {
+            display: none;
+        }
+
+        &__inner {
+            width: 525px;
+            height: 364px;
+    
+            &__contens {
+
+                img {
+                    height: 364px;
+                    width: 525px;
+                }
+            }
+        }
+    }
+}
+
+@media  (max-width: 525px) {
+    .corousel {
+        &__inner {
+            width: 400px;
+            height: 276.6px;
+    
+            &__contens {
+
+                img {
+                    height: 276.6px;
+                    width: 400px;
+                }
+            }
+        }
+    }
+}
+
+@media  (max-width: 400px) {
+    .corousel {
+        &__inner {
+            width: 320px;
+            height: 222px;
+    
+            &__contens {
+
+                img {
+                    height: 222px;
+                    width: 320px;
+                }
+            }
+        }
+    }
+}
