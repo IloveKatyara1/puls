@@ -1,0 +1,74 @@
+.reviews {
+    max-width: 915px;
+    margin: 79px auto 48px auto;
+
+    .title {
+        font-weight: 700;
+        font-size: 30px;
+        color: #0D0D0D;
+        text-align: center;
+    }
+
+    &-block {
+        margin: 60px 0 0 0;
+        display: flex;
+        justify-content: space-between;
+
+        img {
+            max-width: 169px;
+            max-height: 169px;
+        }
+
+        &__details {
+            max-width: 676px;
+        }
+
+        &__name {
+            font-weight: 700;
+            font-size: 18px;
+            color: #0D0D0D;
+            margin-bottom: 0;
+        }
+
+        &__marathons {
+            font-weight: 500;
+            font-size: 14px;
+            color: #646464;
+            margin-bottom: 0;
+        }
+
+        &__descr {
+            padding: 0 10px 0 0;
+            font-weight: 300;
+            font-size: 16px;
+            color: #0D0D0D;
+            margin: 10px 0 0 0;
+
+            span {
+                font-family: 'MuseoModerno';
+            }
+        }
+    }
+}
+
+@media(max-width: 880px) {
+    .reviews {
+        &-block {
+            flex-direction: column;
+            max-width: 500px;
+            margin: 60px auto 0 auto;
+
+            img {
+                margin: 0 auto 20px auto;
+            }
+
+            &__details {
+                text-align: center;
+            }
+
+            &__descr {
+                padding: 0 10px;
+            }
+        }
+    }
+}
