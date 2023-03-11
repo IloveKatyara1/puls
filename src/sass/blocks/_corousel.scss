@@ -3,6 +3,7 @@
     display: flex;
     width: 947px;
     margin: 0 auto;
+    position: relative;
 
     &__inner {
         width: 750px;
@@ -50,6 +51,25 @@
         }
         span:last-child {
             transform: translateY(-14px) rotate(135deg);
+        }
+    }
+
+    &-nav {
+        display: flex;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 101px;
+
+        &__item {
+            width: 20px;
+            height: 6px;
+            margin: 0 3px;
+            background-color: $base-color;
+            opacity: 0.5;
+        }
+        &__item-active {
+            opacity: 1;
         }
     }
 }
