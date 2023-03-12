@@ -118,13 +118,20 @@ window.addEventListener('DOMContentLoaded', () => {
         clones = [
             document.querySelector('.clone__first'),
             document.querySelector('.clone__last')
-        ],
-        widthImg = imgs[0].clientWidth;
+        ];
 
+    let widthImg = imgs[0].clientWidth;
     let start, x;
     let isImgComeRunning = false;
     let i = -widthImg;
     
+    window.addEventListener('resize', () => {
+        widthImg = imgs[0].clientWidth;
+        i = -widthImg;
+
+        corousel.style.left = `${i}px`;
+    });
+
     corousel.style.left = `${i}px`;
 
     clones[0].appendChild(imgs[imgs.length - 1].cloneNode(true));
@@ -322,5 +329,5 @@ window.addEventListener('DOMContentLoaded', () => {
             catalogBtnsChangeWrapper[i].classList.add('catalog__btn_active');
             catalogWrapper[i].style.cssText = 'right: 0; position: relative';
         });
-    });
+    });      
 });
