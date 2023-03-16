@@ -137,8 +137,8 @@ window.addEventListener('DOMContentLoaded', () => {
     clones[0].appendChild(imgs[imgs.length - 1].cloneNode(true));
     clones[1].appendChild(imgs[0].cloneNode(true));
 
-    nextBtn.addEventListener('click', () => imgCome(1));
-    prevBtn.addEventListener('click', () => imgCome(-1));
+    nextBtn.addEventListener('click', () => imgCome(-1));
+    prevBtn.addEventListener('click', () => imgCome(1));
 
     corousel.addEventListener('touchstart', e => {
         corousel.style.transition = ``;
