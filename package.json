@@ -17,16 +17,21 @@
   },
   "homepage": "https://github.com/IloveKatyara1/help-me-#readme",
   "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
     "browser-sync": "^2.27.10",
+    "core-js": "^3.29.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-cli": "^2.3.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
-    "sass": "^1.55.0"
-  },
-  "dependencies": {
-    "json-server": "^0.17.2"
+    "json-server": "^0.17.2",
+    "sass": "^1.55.0",
+    "webpack": "^5.76.2",
+    "webpack-cli": "^5.0.1"
   }
 }
