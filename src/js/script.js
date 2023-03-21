@@ -4,7 +4,17 @@ import module from './modules/module';
 import forms from './modules/forms';
 
 window.addEventListener('DOMContentLoaded', () => {
-    carousel();
+    carousel({
+        corouselSect: '.corousel__inner__contens',
+        slidesSect: '.corousel__inner__contens .slide',
+        nextBtnSect: '.corousel__btn-next',
+        prevBtnSect: '.corousel__btn-prev',
+        navCarouselSect: '.corousel-nav',
+        navItemClass: 'corousel-nav__item',
+        navItemClassActive: 'corousel-nav__item-active',
+        cloneFrstSect: '.clone__first',
+        cloneLastSect: '.clone__last'
+    });
     cards('dataBase/db.json');
     module('.overflow', '#consultation', '.modall__close', '[data-consultation]');
 
@@ -14,5 +24,5 @@ window.addEventListener('DOMContentLoaded', () => {
             clearInterval(findCatalogBtn);
         }
     }, 5);
-    forms('server/server.php');
+    forms('./server/server.php');
 });

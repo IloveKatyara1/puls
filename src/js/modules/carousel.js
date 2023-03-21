@@ -1,4 +1,62 @@
-function carousel() {
+function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarouselSect, cloneFrstSect, cloneLastSect, navItemClass, navItemClassActive}) {
+    const corousel = document.querySelector(corouselSect),
+        slides = corousel.querySelectorAll(slidesSect),
+        nextBtn = document.querySelector(nextBtnSect),
+        prevBtn = document.querySelector(prevBtnSect),
+        navCorousel = document.querySelector(navCarouselSect),
+        clones = [
+            document.querySelector(cloneFrstSect),
+            document.querySelector(cloneLastSect)
+        ];
+
+    let widthImg = slides[0].clientWidth;
+    let start, x;
+    let isImgComeRunning = false;
+    let i = -widthImg;
+    
+    window.addEventListener('resize', () => {
+        widthImg = slides[0].clientWidth;
+        i = -widthImg;
+
+        corousel.style.left = `${i}px`;
+    });
+
+    corousel.style.left = `${i}px`;
+
+    clones[0].appendChild(slides[slides.length - 1].cloneNode(true));
+    clones[1].appendChild(slides[0].cloneNode(true));
+
+    nextBtn.addEventListener('click', () => imgCome(-1));
+    prevBtn.addEventListener('click', () => imgCome(1));
+
+    corousel.addEventListener('touchstart', e => {
+        corousel.style.transition = ``;
+
+        start = e.touches[0].clientX;
+        
+        corousel.addEventListener('touchmove', touchmoveCorousel);
+    });
+
+    corousel.addEventListener('touchend', touchEnd);
+
+    slides.forEach(() => {
+        const navCorouselItem = document.createElement('div');
+        navCorouselItem.classList.add(navItemClass);
+    
+        navCorousel.append(navCorouselItem);
+    });
+
+    const navCorouselItems = document.querySelectorAll(`.${navItemClass}`);
+
+    navCorouselItems[0].classList.add(navItemClassActive);
+
+    navCorouselItems.forEach((item, iterator) => {
+        item.addEventListener('click', () => {
+            i = iterator * -widthImg;
+            imgCome(-1);
+        });
+    });
+
     let direction = -1;
 
     function changeSlideByTimeout() {
@@ -31,11 +89,11 @@ function carousel() {
 
         corousel.style.cssText = `transition: 1s all;`;
 
-        if (i == (imgs.length + 1) * -widthImg) {
+        if (i == (slides.length + 1) * -widthImg) {
             imgComeTimeount(-widthImg);
-            removeActiveInNav(imgs.length + 1);
+            removeActiveInNav(slides.length + 1);
         } else if (i == 0) {
-            imgComeTimeount(imgs.length * -widthImg);
+            imgComeTimeount(slides.length * -widthImg);
             removeActiveInNav(0);
         } else {
             corousel.style.left = `${i}px`;
@@ -49,12 +107,12 @@ function carousel() {
     }
 
     function repeatCorouselByTouch() {
-        if (i == (imgs.length + 1) * -widthImg) {
-            removeActiveInNav(imgs.length + 1);
+        if (i == (slides.length + 1) * -widthImg) {
+            removeActiveInNav(slides.length + 1);
             frstSlideLast(-widthImg);
         } else if (i == 0) {
             removeActiveInNav(0);
-            frstSlideLast((imgs.length) * -widthImg);
+            frstSlideLast((slides.length) * -widthImg);
         } else {
             removeActiveInNav((i / widthImg) * -1);
 
@@ -102,8 +160,6 @@ function carousel() {
     }
 
     function touchEnd() {
-        corousel.removeEventListener('touchmove', touchmoveCorousel);
-
         if (i > 0) {
             thouchendCorousel(1, -1);
         } else if(i < 0) {
@@ -113,75 +169,17 @@ function carousel() {
 
     function removeActiveInNav(num) {
         navCorouselItems.forEach(item => {
-            item.classList.remove('corousel-nav__item-active');
+            item.classList.remove(navItemClassActive);
         });
 
         if(num == 0) {
-            navCorouselItems[navCorouselItems.length - 1].classList.add('corousel-nav__item-active');
+            navCorouselItems[navCorouselItems.length - 1].classList.add(navItemClassActive);
         } else if(num == navCorouselItems.length + 1) {
-            navCorouselItems[0].classList.add('corousel-nav__item-active');
+            navCorouselItems[0].classList.add(navItemClassActive);
         } else {
-            navCorouselItems[num - 1].classList.add('corousel-nav__item-active');
+            navCorouselItems[num - 1].classList.add(navItemClassActive);
         }
     }
-
-    const corousel = document.querySelector('.corousel__inner__contens'),
-        imgs = corousel.querySelectorAll('.corousel__inner__contens .slide'),
-        nextBtn = document.querySelector('.corousel__btn-next'),
-        prevBtn = document.querySelector('.corousel__btn-prev'),
-        navCorousel = document.querySelector('.corousel-nav'),
-        clones = [
-            document.querySelector('.clone__first'),
-            document.querySelector('.clone__last')
-        ];
-
-    let widthImg = imgs[0].clientWidth;
-    let start, x;
-    let isImgComeRunning = false;
-    let i = -widthImg;
-    
-    window.addEventListener('resize', () => {
-        widthImg = imgs[0].clientWidth;
-        i = -widthImg;
-
-        corousel.style.left = `${i}px`;
-    });
-
-    corousel.style.left = `${i}px`;
-
-    clones[0].appendChild(imgs[imgs.length - 1].cloneNode(true));
-    clones[1].appendChild(imgs[0].cloneNode(true));
-
-    nextBtn.addEventListener('click', () => imgCome(-1));
-    prevBtn.addEventListener('click', () => imgCome(1));
-
-    corousel.addEventListener('touchstart', e => {
-        corousel.style.transition = ``;
-
-        start = e.touches[0].clientX;
-        
-        corousel.addEventListener('touchmove', touchmoveCorousel);
-    });
-
-    corousel.addEventListener('touchend', touchEnd);
-
-    imgs.forEach(() => {
-        const navCorouselItem = document.createElement('div');
-        navCorouselItem.classList.add('corousel-nav__item');
-    
-        navCorousel.append(navCorouselItem);
-    });
-
-    const navCorouselItems = document.querySelectorAll('.corousel-nav__item');
-
-    navCorouselItems[0].classList.add('corousel-nav__item-active');
-
-    navCorouselItems.forEach((item, iterator) => {
-        item.addEventListener('click', () => {
-            i = iterator * -widthImg;
-            imgCome(-1);
-        });
-    });
 }
 
 export default carousel;
