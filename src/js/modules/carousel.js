@@ -1,9 +1,11 @@
-function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarouselSect, cloneFrstSect, cloneLastSect, navItemClass, navItemClassActive}) {
+function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, 
+    navCarouselSect, cloneFrstSect, cloneLastSect, navItemClass, navItemClassActive, parentCarouselSect}) {
     const corousel = document.querySelector(corouselSect),
         slides = corousel.querySelectorAll(slidesSect),
         nextBtn = document.querySelector(nextBtnSect),
         prevBtn = document.querySelector(prevBtnSect),
         navCorousel = document.querySelector(navCarouselSect),
+        parentCarousel = document.querySelector(parentCarouselSect),
         clones = [
             document.querySelector(cloneFrstSect),
             document.querySelector(cloneLastSect)
@@ -12,13 +14,16 @@ function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarous
     let widthImg = slides[0].clientWidth;
     let start, x;
     let isImgComeRunning = false;
-    let i = -widthImg;
+    let i = -widthImg,
+        isMouse, newInterval, multiplier, whichWayWillIntervalGo;
     
     window.addEventListener('resize', () => {
+        multiplier =  i / -widthImg;
         widthImg = slides[0].clientWidth;
-        i = -widthImg;
+        i = multiplier * -widthImg;
 
         corousel.style.left = `${i}px`;
+        removeActiveInNav((i / widthImg) * -1);
     });
 
     corousel.style.left = `${i}px`;
@@ -26,18 +31,36 @@ function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarous
     clones[0].appendChild(slides[slides.length - 1].cloneNode(true));
     clones[1].appendChild(slides[0].cloneNode(true));
 
-    nextBtn.addEventListener('click', () => imgCome(-1));
-    prevBtn.addEventListener('click', () => imgCome(1));
+    nextBtn.addEventListener('click', () => {
+        imgCome(-1);
+        if(!newInterval) {
+            newInterval = true;
+        }
+    });
+    prevBtn.addEventListener('click', () => {
+        imgCome(1);
+        if(!newInterval) {
+            newInterval = true;
+        }
+    });
 
     corousel.addEventListener('touchstart', e => {
+        if (isImgComeRunning) {
+            return;
+        }
+
+        isImgComeRunning = true;
+        setTimeout(() => isImgComeRunning = false, 500);
+
         corousel.style.transition = ``;
 
         start = e.touches[0].clientX;
         
         corousel.addEventListener('touchmove', touchmoveCorousel);
+        corousel.addEventListener('touchend', touchEnd);
     });
 
-    corousel.addEventListener('touchend', touchEnd);
+    corousel.addEventListener('mousedown', changeSlideByMouseStart);
 
     slides.forEach(() => {
         const navCorouselItem = document.createElement('div');
@@ -52,6 +75,10 @@ function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarous
 
     navCorouselItems.forEach((item, iterator) => {
         item.addEventListener('click', () => {
+            if(!newInterval) {
+                newInterval = true;
+            }
+
             i = iterator * -widthImg;
             imgCome(-1);
         });
@@ -59,11 +86,33 @@ function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarous
 
     let direction = -1;
 
+    setInterval(() => console.log(direction), 1000);
+
     function changeSlideByTimeout() {
         imgCome(direction);
     }
 
     let interval = setInterval(changeSlideByTimeout, 7500);
+
+    function changeSlideByMouseStart(e) {
+        if (isImgComeRunning) {
+            return;
+        }
+
+        isImgComeRunning = true;
+        setTimeout(() => isImgComeRunning = false, 500);
+
+        isMouse = true;
+        corousel.removeEventListener('mousedown', changeSlideByMouseStart);
+
+        corousel.style.transition = ``;
+        corousel.style.cursor = 'grabbing';
+
+        start = e.clientX;
+        
+        parentCarousel.addEventListener('mousemove', touchmoveCorousel);
+        parentCarousel.addEventListener('mouseup', touchEnd);
+    }
 
     function imgComeTimeount(num) {
         corousel.style.left = `${i}px`;
@@ -76,6 +125,11 @@ function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarous
 
             isImgComeRunning = false;
         }, 1000);
+    }
+
+    function setNewInterval() {
+        clearInterval(interval);
+        interval = setInterval(changeSlideByTimeout, 10000);
     }
 
     function imgCome(pOrM) {
@@ -101,9 +155,6 @@ function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarous
             removeActiveInNav((i / widthImg) * -1);
             setTimeout(() => isImgComeRunning = false, 1000);
         }
-
-        clearInterval(interval);
-        interval = setInterval(changeSlideByTimeout, 10000);
     }
 
     function repeatCorouselByTouch() {
@@ -119,9 +170,6 @@ function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarous
             corousel.style.cssText = `transition: 0.5s all;`;
             corousel.style.left = `${i}px`;
         }
-
-        clearInterval(interval);
-        interval = setInterval(changeSlideByTimeout, 10000);
     }
 
     function frstSlideLast(num) {
@@ -139,17 +187,33 @@ function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarous
     function thouchendCorousel(frstNum, secondNum) {
         if(x >= widthImg / 2 - 100) {
             i += widthImg * frstNum;
-            direction = frstNum;
         } else if(x < -widthImg / 2 + 100) {
             i += widthImg * secondNum;
-            direction = secondNum;
+        }
+
+        if(!newInterval) {
+            newInterval = true;
         }
 
         repeatCorouselByTouch();
     }
     
-    function touchmoveCorousel(e) {
-        x = (start - e.touches[0].clientX);
+    function touchmoveCorousel(e) {        
+        if(isMouse) {
+            if(e.target.tagName !== 'IMG') {
+                let newLeft = i + x * -1;
+                corousel.style.left = `${newLeft}px`; 
+
+                parentCarousel.removeEventListener('mousemove', touchmoveCorousel);
+                parentCarousel.removeEventListener('mouseup', touchEnd);
+                touchEnd();
+
+                return;
+            }
+            x = (start - e.clientX);
+        } else {
+            x = (start - e.touches[0].clientX);
+        }
             
         let newLeft = i + x * -1;
         corousel.style.left = `${newLeft}px`;        
@@ -159,7 +223,18 @@ function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarous
         }
     }
 
-    function touchEnd() {
+    function touchEnd() {        
+        if(isMouse) {
+            corousel.style.cursor = 'grab';
+
+            corousel.addEventListener('mousedown', changeSlideByMouseStart);
+
+            parentCarousel.removeEventListener('mousemove', touchmoveCorousel);
+            parentCarousel.removeEventListener('mouseup', touchEnd);
+
+            isMouse = false;
+        }
+
         if (i > 0) {
             thouchendCorousel(1, -1);
         } else if(i < 0) {
@@ -172,10 +247,24 @@ function carousel({corouselSect, slidesSect, nextBtnSect, prevBtnSect, navCarous
             item.classList.remove(navItemClassActive);
         });
 
+        if(newInterval) {
+            if(whichWayWillIntervalGo < num) {
+                direction = -1;
+            } else if(whichWayWillIntervalGo > num) {
+                direction = 1;
+            }
+
+            setNewInterval();
+        }
+
+        whichWayWillIntervalGo = num;
+
         if(num == 0) {
             navCorouselItems[navCorouselItems.length - 1].classList.add(navItemClassActive);
+            whichWayWillIntervalGo = navCorouselItems.length;
         } else if(num == navCorouselItems.length + 1) {
             navCorouselItems[0].classList.add(navItemClassActive);
+            whichWayWillIntervalGo = 1;
         } else {
             navCorouselItems[num - 1].classList.add(navItemClassActive);
         }

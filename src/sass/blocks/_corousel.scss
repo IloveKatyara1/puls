@@ -16,6 +16,7 @@
             display: flex;
             position: absolute;
             left: -750px;
+            cursor: grab;
 
             img {
                 height: 520px;
@@ -62,9 +63,9 @@
         bottom: 101px;
 
         &__item {
-            width: 20px;
-            height: 6px;
-            margin: 0 3px;
+            width: 25px;
+            height: 9px;
+            margin: 0px 5px;
             background-color: $base-color;
             cursor: pointer;
             opacity: 0.5;
@@ -81,7 +82,7 @@
     }
 }
 
-@media  (max-width: 840px) {
+@media  (max-width: 860px) {
     .corousel {
         width: auto;
 

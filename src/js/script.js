@@ -13,7 +13,8 @@ window.addEventListener('DOMContentLoaded', () => {
         navItemClass: 'corousel-nav__item',
         navItemClassActive: 'corousel-nav__item-active',
         cloneFrstSect: '.clone__first',
-        cloneLastSect: '.clone__last'
+        cloneLastSect: '.clone__last',
+        parentCarouselSect: '.corousel'
     });
     cards('dataBase/db.json');
     module('.overflow', '#consultation', '.modall__close', '[data-consultation]');

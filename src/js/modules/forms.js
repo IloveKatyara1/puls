@@ -64,10 +64,11 @@ function forms(url) {
             .finally(() => {
                 form.reset();
                 module('.overflow', '#thanks', '.modall__close', null);
-                
             });
         });
     });
+    
+    $('input[name=phone]').mask("+380 (99) 999-99-99");
 }
 
 export default forms;
