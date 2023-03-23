@@ -21,9 +21,56 @@ function forms(url) {
           overflow = document.querySelector('.overflow');
 
     forms.forEach(form => {
+        const submit = form.querySelector('.button_submit'),
+              inputs = form.querySelectorAll('input'),
+              inputEmail = form.querySelector('input[name="email"]');
+
+        submit.addEventListener('click', () => {
+            form.querySelectorAll('div').forEach(div => div.remove());
+
+            inputs.forEach(input => {
+                const div = document.createElement('div');
+                div.classList.add('massege-failed');
+                
+                input.classList.remove('input-failed');
+                input.classList.remove('input-done');
+
+                if(input.value == 0) {
+                    input.classList.add('input-failed');
+    
+                    div.innerHTML = 'ви не вели нічого у верхньому блоці, будь ласка ведіть дані';
+                    input.after(div);
+                }else if(input == inputEmail) {
+                    let isBad;
+    
+                    for(let i = 0; i <= inputEmail.value.length; i++) {
+                        if(inputEmail.value[i] !== '@') {
+                            div.innerHTML = 'ви не коректно ввели почту';
+                            div.after(input);
+    
+                            input.classList.add('input-failed');
+                        } else if(inputEmail.value[i] == '@') {
+                            isBad = i;
+                        }
+                    }
+    
+                    if(isBad >= inputEmail.value.length) {
+                        div.innerHTML = 'ви не коректно ввели почту';
+                        div.after(input);
+    
+                        input.classList.add('input-failed');
+                    } else {
+                        input.classList.add('input-done');
+                    }
+                } else {
+                    input.classList.add('input-done');
+                }
+            });
+        });
+
         form.addEventListener('submit', async e => {
             e.preventDefault();
-            
+
             if (form.parentElement.getAttribute('class') == 'modall active') {
                 form.parentElement.classList.remove('active');
             }
@@ -62,6 +109,7 @@ function forms(url) {
                 modalThanks.innerHTML = `<div class="modall__close">&times;</div><div class="modall__title">щось пішло не так</div><div class="modall__descr">вибачте щось пішло не так спробуйте трохи пізніше Помилка <span>${status}</span></div>`;
             })
             .finally(() => {
+                inputs.forEach(input => input.classList.remove('inputActive'));
                 form.reset();
                 module('.overflow', '#thanks', '.modall__close', null);
             });

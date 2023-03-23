@@ -19,8 +19,35 @@
             margin-bottom: 17px;
         }
     }
+    .input-failed:invalid {
+        border: 1px solid red;
+    }    
+
+    .input-done:valid {
+        border: 1px solid green;
+    }
+
+    .input-failed:focus:invalid {
+        outline: 0;
+        border: 2px solid red;
+    }
+    
+    .input-done:focus:valid {
+        outline: 0;
+        border: 2px solid green;
+    }
 }
 
 .feed-form_mt25 {
     margin-top: 25px;
+}
+
+.massege-failed {
+    color: red;
+    text-align: center;
+    background-color: rgba($color: #fff, $alpha: .6);
+    margin: -7.5px 0 10px 0;
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
 }
