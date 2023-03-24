@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="font/stylesheet.css">
 </head>
 <body>
-    <section class="promo">
+    <section class="promo" id="up">
         <div class="container">
             <header class="header">
                 <a href="#" class="header__logo">
@@ -111,9 +111,8 @@
             </div>
             <form id="consultationForm" class="feed-form" action="#">
                 <input name="name" required placeholder="Ваше имя" type="text">
-                <input name="phone" required placeholder="Ваш телефон">
+                <input name="phone" required placeholder="Ваш телефон" type="number">
                 <input name="email" required placeholder="Ваш E-mail" type="email">
-                <!-- <input value="ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ" type="submit"> -->
                 <button class="button button_submit">ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</button>
             </form>
         </div>
@@ -215,7 +214,7 @@
             <div class="modall__descr">и мы перезвоним вам в течении 10 минут</div>
             <form id="consultationForm" class="feed-form feed-form_mt25" action="#">
                 <input name="name" required placeholder="Ваше имя" type="text">
-                <input name="phone" required placeholder="Ваш телефон">
+                <input name="phone" required placeholder="Ваш телефон" type="number">
                 <input name="email" required placeholder="Ваш E-mail" type="email">
                 <button class="button button_submit">ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</button>
             </form>
@@ -226,7 +225,7 @@
             <div class="modall__descr">Пульсометр Polar FT1</div>
             <form class="feed-form feed-form_mt25" action="#" id="orderForm">
                 <input name="name" required placeholder="Ваше имя" type="text">
-                <input name="phone" required placeholder="Ваш телефон">
+                <input name="phone" required placeholder="Ваш телефон" type="number">
                 <input name="email" required placeholder="Ваш E-mail" type="email">
                 <button class="button button_submit">Купить</button>
             </form>
@@ -237,8 +236,7 @@
             <div class="modall__descr">Наш менеджер свяжется с вами в ближайшее время!</div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/jquery.maskedinput.min.js"></script>
+    <a href="#up" class="page_up"><img src="./icons/chevron-circle-up.png" alt="up"></a>
     <script src="js/bundle.js"></script>
 </body>
 </html>

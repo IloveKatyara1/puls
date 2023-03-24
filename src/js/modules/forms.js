@@ -115,8 +115,6 @@ function forms(url) {
             });
         });
     });
-    
-    $('input[name=phone]').mask("+380 (99) 999-99-99");
 }
 
 export default forms;

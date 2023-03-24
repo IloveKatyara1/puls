@@ -2,6 +2,7 @@ import carousel from './modules/carousel';
 import cards from './modules/cards';
 import module from './modules/module';
 import forms from './modules/forms';
+import fluentScrollPageUp from './modules/fluentScroll&PageUp';
 
 window.addEventListener('DOMContentLoaded', () => {
     carousel({
@@ -26,4 +27,5 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }, 5);
     forms('./server/server.php');
+    fluentScrollPageUp();
 });
