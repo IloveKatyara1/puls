@@ -1,6 +1,5 @@
 .advantage {
     padding: 70px 0 40px 0;
-    // height: 473px;
     background: #F6F6F6;
 
     .title {
@@ -14,6 +13,11 @@
         margin: 60px auto 35px auto;
         display: block;
     }
+
+    &__heart {
+        animation: heartbeat 1.5s ease infinite normal;
+    }
+
     &__wrapper {
         display: flex;
         justify-content: space-between;
