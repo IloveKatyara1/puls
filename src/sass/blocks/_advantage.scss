@@ -16,6 +16,10 @@
 
     &__heart {
         animation: heartbeat 1.5s ease infinite normal;
+
+        &:hover {
+            animation-play-state: paused;
+        }
     }
 
     &__wrapper {

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>plus</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="font/stylesheet.css">
 </head>
@@ -110,9 +111,9 @@
                 Просто заполните форму заявки <br> и мы перезвоним вам в течении 10 минут
             </div>
             <form id="consultationForm" class="feed-form" action="#">
-                <input name="name" required placeholder="Ваше имя" type="text">
-                <input name="phone" required placeholder="Ваш телефон" type="number">
-                <input name="email" required placeholder="Ваш E-mail" type="email">
+                <input name="name" required placeholder="Ваше имя" type="text" maxlength="40">
+                <input name="phone" required placeholder="Ваш телефон" maxlength="19">
+                <input name="email" required placeholder="Ваш E-mail" type="email" maxlength="35">
                 <button class="button button_submit">ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</button>
             </form>
         </div>
@@ -163,7 +164,7 @@
     <section class="reviews">
         <h2 class="title">отзывы клиентов</h2>
         <div class="reviews_container">
-            <div class="reviews-block">
+            <div class="reviews-block animate__animated animate__fadeInUp wow" data-wow-duration="1.7s">
                 <img src="img/client_1.png" alt="client">
                 <div class="reviews-block__details">
                     <h5 class="reviews-block__name">Ирина Иванченко </h5>
@@ -171,7 +172,7 @@
                     <p class="reviews-block__descr">Не знала, что себе купить - обратилась к ребятам из <span>RunSmart</span> - подобрали пульсометр, который подошёл именно под мои цели и финансовые возможности.Через некоторое время решила обновить гаджет - не раздумывая обратилась туда же. <br> <br> Новые цели - новый гаджет! <br> <br> Спасибо, <span>RunSmart</span>! </p>
                 </div>
             </div>
-            <div class="reviews-block">
+            <div class="reviews-block animate__animated animate__fadeInUp wow" data-wow-duration="1.7s">
                 <img src="img/client_2.png" alt="client">
                 <div class="reviews-block__details">
                     <h5 class="reviews-block__name">Иван Сёмочкин</h5>
@@ -179,7 +180,7 @@
                     <p class="reviews-block__descr">Крутая штука-пульсометр. Обычно без них бегал. Оказывается только хуже себе делал. <br> Купил пульсометр, ещё в подарок получил тренировку. Со мной вместе провели первую тренировку, научили пользоваться новым гаджетом. Также объяснили основы анатомии, составили план тренировок на месяц вперёд <br> <br> С ними подготовился к своему первому полумарафону! Спасибо!!!</p>
                 </div>
             </div>
-            <div class="reviews-block">
+            <div class="reviews-block animate__animated animate__fadeInUp wow" data-wow-duration="1.7s">
                 <img src="img/client_3.png" alt="client">
                 <div class="reviews-block__details">
                     <h5 class="reviews-block__name">Юлия Дашкина</h5>
@@ -213,9 +214,9 @@
             <div class="modall__title">Просто заполните форму заявки</div>
             <div class="modall__descr">и мы перезвоним вам в течении 10 минут</div>
             <form id="consultationForm" class="feed-form feed-form_mt25" action="#">
-                <input name="name" required placeholder="Ваше имя" type="text">
-                <input name="phone" required placeholder="Ваш телефон" type="number">
-                <input name="email" required placeholder="Ваш E-mail" type="email">
+                <input name="name" required placeholder="Ваше имя" type="text" maxlength="40">
+                <input name="phone" required placeholder="Ваш телефон" maxlength="19">
+                <input name="email" required placeholder="Ваш E-mail" type="email" maxlength="40">
                 <button class="button button_submit">ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</button>
             </form>
         </div>
@@ -224,9 +225,9 @@
             <div class="modall__title">Ваш заказ:</div>
             <div class="modall__descr">Пульсометр Polar FT1</div>
             <form class="feed-form feed-form_mt25" action="#" id="orderForm">
-                <input name="name" required placeholder="Ваше имя" type="text">
-                <input name="phone" required placeholder="Ваш телефон" type="number">
-                <input name="email" required placeholder="Ваш E-mail" type="email">
+                <input name="name" required placeholder="Ваше имя" type="text" maxlength="40">
+                <input name="phone" required placeholder="Ваш телефон" maxlength="19">
+                <input name="email" required placeholder="Ваш E-mail" type="email" maxlength="40">
                 <button class="button button_submit">Купить</button>
             </form>
         </div>
@@ -237,6 +238,7 @@
         </div>
     </div>
     <a href="#up" class="page_up"><img src="./icons/chevron-circle-up.png" alt="up"></a>
+    <script src="js/wow.min.js"></script>
     <script src="js/bundle.js"></script>
 </body>
 </html>

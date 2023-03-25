@@ -1,7 +1,16 @@
+import {clearInputs, timeouts, formsS} from './forms';
+
 function closeModal(overflow, modal) {
     overflow.classList.remove('active');
     modal.classList.remove('active');
 
+    formsS.forEach((form, i) => {
+        if(form == modal.children[3]) {
+            clearInputs(form);
+            timeouts[i] = '';
+        }
+    });
+    
     lever = true;
 }
 

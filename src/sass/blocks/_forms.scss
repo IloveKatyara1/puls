@@ -6,6 +6,7 @@
 
     input {
         height: 54px;
+        width: 100%;
         background: #FFFFFF;
         border-radius: 5px;
         border: none;
@@ -19,22 +20,23 @@
             margin-bottom: 17px;
         }
     }
-    .input-failed:invalid {
-        border: 1px solid red;
+
+    .input_active:invalid {
+        border: 1.5px solid red;
     }    
 
-    .input-done:valid {
-        border: 1px solid green;
+    .input_active:valid {
+        border: 1.5px solid green;
     }
 
-    .input-failed:focus:invalid {
+    .input_active:focus:invalid {
         outline: 0;
-        border: 2px solid red;
+        border: 2.5px solid red;
     }
     
-    .input-done:focus:valid {
+    .input_active:focus:valid {
         outline: 0;
-        border: 2px solid green;
+        border: 2.5px solid green;
     }
 }
 
