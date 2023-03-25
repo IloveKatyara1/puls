@@ -28,4 +28,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 5);
     forms('./server/server.php');
     fluentScrollPageUp();
+
+    new WOW().init();
 });

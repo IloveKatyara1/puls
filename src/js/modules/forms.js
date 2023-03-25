@@ -3,24 +3,95 @@ import module from './module';
 
 let productName, data;
 
+const timeouts = {};
+const formsS = document.querySelectorAll('form');
+
 function findUrl(form) {
-    if(form.getAttribute('id') == 'consultationForm') {
-        // return 'http://localhost:3000/consultations';
-    } else if(form.getAttribute('id') == 'orderForm') {
+    if(form.getAttribute('id') == 'orderForm') {
         productName = form.parentElement.querySelector('.modall__descr').textContent;
 
         data.productName = productName;
-
-        // return 'http://localhost:3000/orders';
     }
 }
 
+function removeInputError(input) {
+    if(input.nextElementSibling.tagName == 'DIV') {
+        input.nextElementSibling.remove();
+    }
+}
+
+function findForm(i) {
+    return formsS[i];
+}
+
+function clearInputs(form) {
+    form.querySelectorAll('input').forEach(input => {
+        input.value = '';
+        input.classList.remove('input_active');
+    });
+
+    form.querySelectorAll('div').forEach(div => div.remove());
+}
+
+function inputsEvent(input) {
+    const div = document.createElement('div');
+    div.classList.add('massege-failed');
+
+    input.classList.add('input_active');
+
+    if(input.value == 0) {   
+        removeInputError(input);
+        
+        div.innerHTML = 'ви не вели нічого у верхньому блоці, будь ласка ведіть дані';
+        input.after(div);
+    } else {
+        if(input.getAttribute('name') == 'email') {
+            return;
+        }
+        removeInputError(input);
+    }
+}
+
+function inputEventForEmail(inputEmail) {
+    removeInputError(inputEmail);
+
+    let isBad, haveAtsign;
+
+    const div = document.createElement('div');
+    div.classList.add('massege-failed');
+    div.innerHTML = 'ви не коректно ввели почту';
+
+    for(let i = 0; i <= inputEmail.value.length; i++) {
+        if(inputEmail.value[i] !== '@' && !haveAtsign && inputEmail.value[i] == '.') {
+            isBad = 0;
+        } else if(inputEmail.value[i] == '@') {
+            haveAtsign = true;
+            isBad = i;
+        }
+        if(isBad) {
+            if(isBad == inputEmail.value.length - 1) {
+                inputEmail.after(div);
+            } else {
+                removeInputError(inputEmail);
+            }
+        } else {
+            inputEmail.after(div);
+        }
+    }
+}
+
+function inputForEach(inputs, i) {
+    const form = findForm(i);
+    timeouts[i] = setTimeout(() => clearInputs(form), 30000);
+
+    inputs.forEach(input => inputsEvent(input));
+}
+
 function forms(url) {
-    const modalThanks = document.querySelector('#thanks');
-    const forms = document.querySelectorAll('form'),
+    const modalThanks = document.querySelector('#thanks'),
           overflow = document.querySelector('.overflow');
 
-    forms.forEach(form => {
+    formsS.forEach((form, i) => {
         const submit = form.querySelector('.button_submit'),
               inputs = form.querySelectorAll('input'),
               inputEmail = form.querySelector('input[name="email"]');
@@ -28,45 +99,18 @@ function forms(url) {
         submit.addEventListener('click', () => {
             form.querySelectorAll('div').forEach(div => div.remove());
 
-            inputs.forEach(input => {
-                const div = document.createElement('div');
-                div.classList.add('massege-failed');
-                
-                input.classList.remove('input-failed');
-                input.classList.remove('input-done');
-
-                if(input.value == 0) {
-                    input.classList.add('input-failed');
-    
-                    div.innerHTML = 'ви не вели нічого у верхньому блоці, будь ласка ведіть дані';
-                    input.after(div);
-                }else if(input == inputEmail) {
-                    let isBad;
-    
-                    for(let i = 0; i <= inputEmail.value.length; i++) {
-                        if(inputEmail.value[i] !== '@') {
-                            div.innerHTML = 'ви не коректно ввели почту';
-                            div.after(input);
-    
-                            input.classList.add('input-failed');
-                        } else if(inputEmail.value[i] == '@') {
-                            isBad = i;
-                        }
-                    }
-    
-                    if(isBad >= inputEmail.value.length) {
-                        div.innerHTML = 'ви не коректно ввели почту';
-                        div.after(input);
-    
-                        input.classList.add('input-failed');
-                    } else {
-                        input.classList.add('input-done');
-                    }
-                } else {
-                    input.classList.add('input-done');
-                }
-            });
+            inputEventForEmail(inputEmail);
+            inputForEach(inputs, i);
         });
+
+        inputEmail.addEventListener('input', () => {
+            form.querySelectorAll('div').forEach(div => div.remove());
+
+            inputEventForEmail(inputEmail);
+            inputForEach(inputs, i);
+        });
+
+        inputs.forEach(input => input.addEventListener('input', () => inputForEach(inputs, i)));
 
         form.addEventListener('submit', async e => {
             e.preventDefault();
@@ -109,7 +153,7 @@ function forms(url) {
                 modalThanks.innerHTML = `<div class="modall__close">&times;</div><div class="modall__title">щось пішло не так</div><div class="modall__descr">вибачте щось пішло не так спробуйте трохи пізніше Помилка <span>${status}</span></div>`;
             })
             .finally(() => {
-                inputs.forEach(input => input.classList.remove('inputActive'));
+                clearInputs(form);
                 form.reset();
                 module('.overflow', '#thanks', '.modall__close', null);
             });
@@ -118,3 +162,4 @@ function forms(url) {
 }
 
 export default forms;
+export {clearInputs, timeouts, formsS};
