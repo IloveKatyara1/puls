@@ -7,7 +7,7 @@ function closeModal(overflow, modal) {
     formsS.forEach((form, i) => {
         if(form == modal.children[3]) {
             clearInputs(form);
-            timeouts[i] = '';
+            clearTimeout(timeouts[i]);
         }
     });
     
@@ -25,7 +25,7 @@ function module(overflowSect, modalSect, btnCloseSect, btnCallSect) {
             btnModalClose = document.querySelectorAll(btnCloseSect);
     
     if(!btnCallSect) {
-        const timeoutCloseModal = setTimeout(() => {
+        setTimeout(() => {
             if(!lever) {
                 closeModal(overflow, modal);
             }

@@ -3,7 +3,7 @@ import module from './module';
 
 let productName, data;
 
-const timeouts = {};
+let timeouts = [];
 const formsS = document.querySelectorAll('form');
 
 function findUrl(form) {
@@ -18,10 +18,6 @@ function removeInputError(input) {
     if(input.nextElementSibling.tagName == 'DIV') {
         input.nextElementSibling.remove();
     }
-}
-
-function findForm(i) {
-    return formsS[i];
 }
 
 function clearInputs(form) {
@@ -81,8 +77,8 @@ function inputEventForEmail(inputEmail) {
 }
 
 function inputForEach(inputs, i) {
-    const form = findForm(i);
-    timeouts[i] = setTimeout(() => clearInputs(form), 30000);
+    clearTimeout(timeouts[i]);
+    timeouts[i] = setTimeout(() => clearInputs(formsS[i]), 30000);  
 
     inputs.forEach(input => inputsEvent(input));
 }
@@ -130,7 +126,7 @@ function forms(url) {
 
             const json = JSON.stringify(data);
 
-            postData(url, json)
+            await postData(url, json)
             .then((data) => {
                 console.log(data);
                 if (form.parentElement.getAttribute('class') == 'modal') {
@@ -154,7 +150,6 @@ function forms(url) {
             })
             .finally(() => {
                 clearInputs(form);
-                form.reset();
                 module('.overflow', '#thanks', '.modall__close', null);
             });
         });
