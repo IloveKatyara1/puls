@@ -23,9 +23,8 @@ function cards(url) {
                         <a href="#" class="catalog-item__link">ПОДРОБНЕЕ</a>
                     </div>
                     <div class="catalog-item__datalis">
-                        <ul>
-                            <a href="#" class="catalog-item__link-back">НАЗАД</a>
-                        </ul>
+                        <ul></ul>
+                        <a href="#" class="catalog-item__link-back">НАЗАД</a>
                     </div>
                 </div>
                 <hr>
@@ -106,7 +105,7 @@ function cards(url) {
             ul.forEach((ulFnc, i) => {
                 if(ulFnc.scrollHeight > 350){   
                     const catalogLinkBack = 
-                    document.querySelectorAll(`${parentBtn} .catalog-item__datalis ul .catalog-item__link-back`);
+                    document.querySelectorAll(`${parentBtn} .catalog-item__datalis .catalog-item__link-back`);
     
                     catalogLinkBack[i].style.bottom = `${-ulFnc.scrollHeight + 350 - 30}px`;
                     ulFnc.parentElement.style.cssText = 'right: -15px; margin-left: 0px;';
