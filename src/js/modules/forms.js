@@ -80,6 +80,11 @@ function inputForEach(inputs, i) {
     clearTimeout(timeouts[i]);
     timeouts[i] = setTimeout(() => clearInputs(formsS[i]), 30000);  
 
+    if(inputs[0].value == '' && inputs[1].value == '' && inputs[2].value == '') {
+        clearTimeout(timeouts[i]);
+        clearInputs(formsS[i]);
+        return;
+    }
     inputs.forEach(input => inputsEvent(input));
 }
 
