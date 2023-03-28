@@ -43,3 +43,21 @@
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
 }
+
+@keyframes heartbeat {
+    from {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.15);
+    }
+    50% {
+        transform: scale(.85);
+    }
+    60% {
+        transform: scale(1.15);
+    }
+    to {
+        transform: scale(1);
+    }
+}
