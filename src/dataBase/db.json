@@ -2,7 +2,7 @@
   "catalog": {
     "forFitnes": [
       {
-        "img": "img/watch_card.png",
+        "img": "img/watch_card.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FT1",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме",
@@ -20,7 +20,7 @@
         ]
       },
       {
-        "img": "img/watch_card.png",
+        "img": "img/watch_card.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FT2",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме новий годиник версією 2",
@@ -34,7 +34,7 @@
         ]
       },
       {
-        "img": "img/watch_card.png",
+        "img": "img/watch_card.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FT3",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме новий годиник версією 3 краще від версієї 2",
@@ -48,7 +48,7 @@
         ]
       },
       {
-        "img": "img/watch_card.png",
+        "img": "img/watch_card.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FT4",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме",
@@ -66,7 +66,7 @@
         ]
       },
       {
-        "img": "img/watch_card.png",
+        "img": "img/watch_card.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FT5",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме новий годиник версією 2",
@@ -80,7 +80,7 @@
         ]
       },
       {
-        "img": "img/watch_card.png",
+        "img": "img/watch_card.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FT6",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме новий годиник версією 3 краще від версієї 2",
@@ -96,7 +96,7 @@
     ],
     "forRun": [
       {
-        "img": "img/watch_main.png",
+        "img": "img/watch_main.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FR1",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме",
@@ -114,7 +114,7 @@
         ]
       },
       {
-        "img": "img/watch_main.png",
+        "img": "img/watch_main.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FR2",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме новий годиник версією 2",
@@ -128,7 +128,7 @@
         ]
       },
       {
-        "img": "img/watch_main.png",
+        "img": "img/watch_main.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FR3",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме новий годиник версією 3 краще від версієї 2",
@@ -144,7 +144,7 @@
     ],
     "forTriathlon": [
       {
-        "img": "img/slied2.png",
+        "img": "img/slied2.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FTr1",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме",
@@ -162,7 +162,7 @@
         ]
       },
       {
-        "img": "img/slied2.png",
+        "img": "img/slied2.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FTr2",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме новий годиник версією 2",
@@ -176,7 +176,7 @@
         ]
       },
       {
-        "img": "img/slied2.png",
+        "img": "img/slied2.webp",
         "altimg": "watch",
         "title": "Пульсометр Polar FTr3",
         "descr": "Для первых шагов в тренировках,основанных на сердечном ритме новий годиник версією 3 краще від версієї 2",
